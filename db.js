@@ -1,7 +1,12 @@
 const mongoose=require('mongoose');
 
 // Define the MongoDB connection URL
-const mongoURL = 'mongodb://localhost:27017/mydb';
+// const mongoURL = 'mongodb://localhost:27017/mydb';
+//now above not for local
+
+
+const mongoURL='mongodb+srv://helloworld:Anmol1234@cluster0.ylps7ox.mongodb.net/';
+
 // Replace 'mydatabase' with your database name
 // Set up MongoDB connection
 mongoose. connect (mongoURL);
