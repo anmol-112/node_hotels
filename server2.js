@@ -140,7 +140,7 @@ app.use(bodyParser. json()); // req.body
 // Import the router files
 const personRoutes = require('./routes/personRoutes') ;
 // Use the routers
-app. use ('/person',personRoutes) ;
+app. use ('/person',localAuthMiddleware,personRoutes) ;
 
 
 // Import the router files
