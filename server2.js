@@ -4,31 +4,12 @@ const bodyParser = require( 'body-parser' );
 const person=require('./models/person');
 const menuItem=require('./models/menuItem');
 require('dotenv').config();
-const passport = require('passport');
-const LocalStrategy = require('passport-local' ) . Strategy;
+const passport=require('./auth');
 
 // Initialize Passport
 app.use(passport.initialize());
 
-passport.use(new LocalStrategy(async (USERNAME, password, done) => {
-// authentication logic here
-// authentication logic nere
-try{
-console. log ( 'Received credentials: ', USERNAME, password) ;
-const user = await person. findOne( {username: USERNAME}) ;
-if (!user)
-return done(null, false, { message: 'Incorrect username.' });
-const isPasswordMatch = user.password === password ? true : false;
-if (isPasswordMatch) {
-return done(null, user) ;
-}else{
-return done(null, false, { message: 'Incorrect password.' });}
-}catch (err) {
-return dine(err) ;}
-}));
-
-
-
+const localAuthMiddleware=passport. authenticate( 'local', {session: false});
 
 
 // get is used to fetch info
@@ -46,7 +27,7 @@ next ();
 
 app.use(logRequest);
 
-app.get('/',passport.authenticate('local', {session: false}),function (req, res) {
+app.get('/',function (req, res) {
 res. send ( 'Welcome to our Hotel');
 } );
 
@@ -165,7 +146,7 @@ app. use ('/person', personRoutes) ;
 // Import the router files
 const menuItemRoutes = require('./routes/menuItemRoutes') ;
 // Use the routers
-app. use ('/menu', menuItemRoutes) ;
+app. use ('/menu',localAuthMiddleware,menuItemRoutes) ;
 
 const PORT=process.env.PORT || 3000;
 
