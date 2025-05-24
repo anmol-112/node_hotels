@@ -15,7 +15,7 @@ passport.use(new LocalStrategy(async (USERNAME, password, done) => {
 // authentication logic nere
 try{
 console. log ( 'Received credentials: ', USERNAME, password) ;
-const user = person. findOne( {username: USERNAME}) ;
+const user = await person. findOne( {username: USERNAME}) ;
 if (!user)
 return done(null, false, { message: 'Incorrect username.' });
 const isPasswordMatch = user.password === password ? true : false;
@@ -27,7 +27,7 @@ return done(null, false, { message: 'Incorrect password.' });}
 return dine(err) ;}
 }));
 
-app.use(passport.initialize());
+
 
 
 
