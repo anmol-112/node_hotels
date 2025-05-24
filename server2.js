@@ -9,7 +9,7 @@ const passport=require('./auth');
 // Initialize Passport
 app.use(passport.initialize());
 
-// const localAuthMiddleware=passport. authenticate( 'local', {session: false});
+const localAuthMiddleware=passport. authenticate( 'local', {session: false});
 
 
 // get is used to fetch info
@@ -140,7 +140,7 @@ app.use(bodyParser. json()); // req.body
 // Import the router files
 const personRoutes = require('./routes/personRoutes') ;
 // Use the routers
-app. use ('/person',passport.authenticate( 'local', {session: false}), personRoutes) ;
+app. use ('/person',localAuthMiddleware, personRoutes) ;
 
 
 // Import the router files
