@@ -1,7 +1,7 @@
 const express=require('express');
 const app = express();
 const bodyParser = require( 'body-parser' );
-const person=require('./models/person');
+// const person=require('./models/person');
 const menuItem=require('./models/menuItem');
 require('dotenv').config();
 const passport=require('./auth');
@@ -9,7 +9,7 @@ const passport=require('./auth');
 // Initialize Passport
 app.use(passport.initialize());
 
-const localAuthMiddleware=passport. authenticate( 'local', {session: false});
+// const localAuthMiddleware=passport. authenticate( 'local', {session: false});
 
 
 // get is used to fetch info
@@ -140,7 +140,7 @@ app.use(bodyParser. json()); // req.body
 // Import the router files
 const personRoutes = require('./routes/personRoutes') ;
 // Use the routers
-app. use ('/person',localAuthMiddleware, personRoutes) ;
+app. use ('/person',passport.authenticate( 'local', {session: false}), personRoutes) ;
 
 
 // Import the router files

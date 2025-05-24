@@ -5,6 +5,8 @@ const LocalStrategy = require('passport-local' ) . Strategy;
 const person=require('./models/person');
 
 
+console.log("good night");
+
 passport.use(new LocalStrategy(async (USERNAME, password, done) => {
 // authentication logic here
 // authentication logic nere
