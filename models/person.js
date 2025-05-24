@@ -23,7 +23,13 @@ address: {
 type: String},
 salary: {
 type: Number,
-required: true}
+required: true},
+username: {
+required: true,
+type: String},
+password: {
+required: true,
+type: String}
 
 } ) ;
 
