@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require( 'body-parser' );
 const person=require('./models/person');
 const menuItem=require('./models/menuItem');
-
+require('dotenv').config();
 
 // get is used to fetch info
 
@@ -11,10 +11,20 @@ const menuItem=require('./models/menuItem');
 //   res.send('Hello World')
 // })
 
+// Middleware Function
+const logRequest = (req, res, next) => {
+console. log(`${new Date().toLocaleString()} Request Made to : ${req.originalUrl}`);
+next ();
+} 
+// // Move on to the next phase
 
-app.get('/', function (req, res) {
-res. send ( 'Welcome to my hotel ... How i can help you ?')
-})
+app.get('/', logRequest , function (req, res) {
+res. send ( 'Welcome to our Hotel');
+} );
+
+// app.get('/', function (req, res) {
+// res. send ( 'Welcome to my hotel ji ... How i can help you ?')
+// })
 app.get('/chicken', (req, res)=>{
 res. send ('sure sir, i would love to serve chicken')
 })
@@ -28,7 +38,7 @@ res. send ( customized_idli)
 });
 // 3000 is a kind of adress of localhost
 
-app.listen(3000,()=>{console.log("Listning on Port")});
+// app.listen(3000,()=>{console.log("Listning on Port")});
 
 app.post('/idli', (req, res)=>{
 res.send ('data is saved' )}) ;
@@ -128,3 +138,7 @@ app. use ('/person', personRoutes) ;
 const menuItemRoutes = require('./routes/menuItemRoutes') ;
 // Use the routers
 app. use ('/menu', menuItemRoutes) ;
+
+const PORT=process.env.PORT || 3000;
+
+app.listen(PORT,()=>{console.log("Listning on Port")});

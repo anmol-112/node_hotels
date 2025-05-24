@@ -4,12 +4,16 @@ const mongoose=require('mongoose');
 // const mongoURL = 'mongodb://localhost:27017/mydb';
 //now above not for local
 
+require('dotenv').config();
 
-const mongoURL='mongodb+srv://helloworld:Anmol1234@cluster0.ylps7ox.mongodb.net/';
+// const mongoURL=process.env.MONGODB_URL;
+const mongoURL = process.env.MONGODB_URL;//Replace 'mydatabase' with your database name
+
 
 // Replace 'mydatabase' with your database name
 // Set up MongoDB connection
 mongoose. connect (mongoURL);
+
 
 // Get the default connection
 // Mongoose maintains a default connection object representing the MongoDB connection.
