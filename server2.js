@@ -140,13 +140,13 @@ app.use(bodyParser. json()); // req.body
 // Import the router files
 const personRoutes = require('./routes/personRoutes') ;
 // Use the routers
-app. use ('/person', personRoutes) ;
+app. use ('/person',localAuthMiddleware, personRoutes) ;
 
 
 // Import the router files
 const menuItemRoutes = require('./routes/menuItemRoutes') ;
 // Use the routers
-app. use ('/menu',localAuthMiddleware,menuItemRoutes) ;
+app. use ('/menu',menuItemRoutes) ;
 
 const PORT=process.env.PORT || 3000;
 
