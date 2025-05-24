@@ -18,6 +18,8 @@ next ();
 } 
 // // Move on to the next phase
 
+app.use(logRequest);
+
 app.get('/', logRequest , function (req, res) {
 res. send ( 'Welcome to our Hotel');
 } );
