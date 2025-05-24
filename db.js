@@ -7,7 +7,7 @@ const mongoose=require('mongoose');
 require('dotenv').config();
 
 // const mongoURL=process.env.MONGODB_URL;
-const mongoURL = process.env.MONGODB_URL_LOCAL;//Replace 'mydatabase' with your database name
+const mongoURL = process.env.MONGODB_URL;//Replace 'mydatabase' with your database name
 
 
 // Replace 'mydatabase' with your database name
